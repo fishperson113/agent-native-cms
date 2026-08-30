@@ -163,6 +163,7 @@ override the automatically derived database URL.
 - [Admin and credential operations](docs/operations/mcp-administration.md)
 - [Backup and recovery](docs/operations/backup-and-recovery.md)
 - [Render and Supabase deployment](docs/deployment/render-supabase.md)
+- [Visual survey: from machine instructions to runtime composition](docs/surveys/programming-paradigms/README.md)
 
 The domain and application layers do not depend on Next.js, Drizzle, React,
 esbuild, MCP, or any model-provider SDK. The kernel deliberately contains no
