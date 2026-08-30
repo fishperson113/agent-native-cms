@@ -61,12 +61,20 @@ class FailingSaveArticleRepository implements ArticleRepository {
     return this.delegate.findById(owner, id);
   }
 
+  findByPublicId(id: ArticleId) {
+    return this.delegate.findByPublicId(id);
+  }
+
   findBySlug(owner: TenantId, slug: ArticleSlug) {
     return this.delegate.findBySlug(owner, slug);
   }
 
   listByTenant(owner: TenantId) {
     return this.delegate.listByTenant(owner);
+  }
+
+  listPublished() {
+    return this.delegate.listPublished();
   }
 
   delete(owner: TenantId, id: ArticleId) {

@@ -7,11 +7,11 @@ export const dynamic = "force-dynamic";
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ slug: string }> },
+  { params }: { params: Promise<{ articleId: string }> },
 ): Promise<Response> {
-  const { slug } = await params;
+  const { articleId } = await params;
   try {
-    const artifact = await getActivePresentationArtifact(slug);
+    const artifact = await getActivePresentationArtifact(articleId);
     if (!artifact) {
       return Response.json(
         { error: "No active presentation artifact." },

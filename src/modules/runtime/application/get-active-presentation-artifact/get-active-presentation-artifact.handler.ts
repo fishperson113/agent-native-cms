@@ -1,12 +1,10 @@
 import { ArticleNotFoundError } from "@/modules/content/domain/article.errors";
 import type { ArticleRepository } from "@/modules/content/domain/article.repository";
-import { ArticleSlug } from "@/modules/content/domain/article-slug";
 import type { ArticlePresentationRepository } from "@/modules/presentation/domain/article-presentation.repository";
-import { tenantId } from "@/shared/kernel/identifiers";
+import { articleId } from "@/shared/kernel/identifiers";
 
 export type GetActivePresentationArtifactQuery = {
-  tenantId: string;
-  slug: string;
+  articleId: string;
 };
 
 export type ActivePresentationArtifact = {
@@ -25,10 +23,8 @@ export class GetActivePresentationArtifactHandler {
   async execute(
     query: GetActivePresentationArtifactQuery,
   ): Promise<ActivePresentationArtifact | null> {
-    const ownerId = tenantId(query.tenantId);
-    const article = await this.articles.findBySlug(
-      ownerId,
-      ArticleSlug.create(query.slug),
+    const article = await this.articles.findByPublicId(
+      articleId(query.articleId),
     );
     if (!article || article.status !== "published") {
       throw new ArticleNotFoundError();
@@ -38,7 +34,7 @@ export class GetActivePresentationArtifactHandler {
     }
 
     const presentation = await this.presentations.findById(
-      ownerId,
+      article.tenantId,
       article.activePresentationId,
     );
     if (

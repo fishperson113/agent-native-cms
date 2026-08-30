@@ -14,7 +14,7 @@ One `pnpm dev` process hosts all HTTP surfaces:
 ```text
 Next.js CMS kernel · http://localhost:3000
 ├─ /                         public landing page
-├─ /articles/[slug]          dynamically loaded article presentation
+├─ /articles/[id]/[slug]     aggregate public article presentation
 ├─ /admin                    admin-only operator UI
 ├─ /api/mcp                  stateful Streamable HTTP MCP server
 ├─ /api/health               public kernel and PostgreSQL readiness

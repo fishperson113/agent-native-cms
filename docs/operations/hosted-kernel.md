@@ -16,7 +16,7 @@ Set `CMS_MCP_ALLOWED_ORIGINS` to a comma-separated allowlist when browser-origin
 
 Each active session has an in-memory MCP protocol event store for resumability. It is intentionally separate from the durable audit event stream planned for M10.
 
-Public delivery queries only return published articles. The stable landing page never evaluates uploaded programs. An individual `/articles/[slug]` page requests its active, versioned JavaScript artifact and mounts it with `{ article }`; missing or failed runtime modules fall back to the CMS reader. Activating a new compiled version changes the pointer read by the next request, so the running kernel is not restarted.
+Public delivery aggregates published articles across every tenant. The stable landing page never evaluates uploaded programs. An individual `/articles/[articleId]/[slug]` page uses the globally unique article ID to request its active, versioned JavaScript artifact and mounts it with `{ article }`; the slug is descriptive and may overlap between tenants. Missing or failed runtime modules fall back to the CMS reader. Activating a new compiled version changes the pointer read by the next request, so the running kernel is not restarted.
 
 The CMS renders article navigation outside the uploaded program. Presentation compilation enforces the versioned baseline UX contract, while the SDK provides responsive defaults for the article root, hero, sections, grids, stacks, and images. Coding agents receive the complete design rules and responsive preflight through `cms_get_instructions` and `cms_get_presentation_sdk`.
 

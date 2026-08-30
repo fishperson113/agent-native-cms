@@ -12,7 +12,7 @@ A modular-monolith proof of concept for a stable hosted CMS kernel that external
 
 Milestones 1–10 are implemented: Tenant/Article core, local and hosted MCP article tools, `ArticlePresentation` artifact persistence, the Article SDK/esbuild compiler, the complete presentation lifecycle, reliability hardening, browser delivery, stateful hosted MCP sessions, fixed revocable credentials, a REST-only operator control plane, and a durable PostgreSQL audit stream. Admin credentials are never accepted by MCP. Activation/reset are transactional, contracts are versioned, telemetry is source-safe, and CI covers the full quality gate. The kernel contains no model-provider integration; uploaded content/programs do not rebuild or redeploy it. The executable implementation sequence is documented in [`docs/plans/`](docs/plans/00-roadmap.md).
 
-The home page is a stable CMS-owned publication surface. Uploaded presentation programs are evaluated only on the matching `/articles/[slug]` reading page, with the default reader used when no presentation is active or the runtime module fails.
+The home page is a stable CMS-owned feed of every published article. Uploaded presentation programs are evaluated only on the matching `/articles/[articleId]/[slug]` reading page, with the default reader used when no presentation is active or the runtime module fails. The article ID is authoritative so tenants can reuse the same slug safely.
 
 ## Stack
 

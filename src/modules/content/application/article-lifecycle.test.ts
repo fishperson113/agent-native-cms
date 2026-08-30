@@ -77,6 +77,10 @@ class InMemoryArticleRepository implements ArticleRepository {
     return article?.tenantId === tenant ? article : null;
   }
 
+  async findByPublicId(id: ArticleId): Promise<Article | null> {
+    return this.articles.get(id) ?? null;
+  }
+
   async findBySlug(
     tenant: TenantId,
     slug: ArticleSlug,
@@ -92,6 +96,12 @@ class InMemoryArticleRepository implements ArticleRepository {
   async listByTenant(tenant: TenantId): Promise<Article[]> {
     return [...this.articles.values()].filter(
       (article) => article.tenantId === tenant,
+    );
+  }
+
+  async listPublished(): Promise<Article[]> {
+    return [...this.articles.values()].filter(
+      (article) => article.status === "published",
     );
   }
 

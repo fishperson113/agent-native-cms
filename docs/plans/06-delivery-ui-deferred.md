@@ -23,7 +23,7 @@ Expose the tested kernel over hosted transports and dynamically load active comp
 
 ## Delivery boundary
 
-The landing page and article index are kernel-owned and never evaluate uploaded code. Only `/articles/[slug]` loads the currently active artifact. Resetting an article removes its active pointer and immediately restores the default reader. Upload and activation still require no kernel source edit, rebuild, redeploy, or restart.
+The landing page and article index are kernel-owned and never evaluate uploaded code. Only `/articles/[articleId]/[slug]` loads the currently active artifact. Public delivery aggregates published articles across tenants and uses the article ID to avoid cross-tenant slug collisions. Resetting an article removes its active pointer and immediately restores the default reader. Upload and activation still require no kernel source edit, rebuild, redeploy, or restart.
 
 ## Current program policy
 

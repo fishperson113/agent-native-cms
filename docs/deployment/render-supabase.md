@@ -15,6 +15,9 @@ Supabase PostgreSQL
 
 - Render runs one Node.js instance from `render.yaml`.
 - The hosted MCP endpoint remains part of the CMS kernel at `/api/mcp`.
+- The public landing page aggregates every published article across tenants.
+- Public article URLs use `/articles/ARTICLE_ID/SLUG`; the UUID is authoritative
+  and prevents collisions when different tenants choose the same slug.
 - Every process start applies existing Drizzle migrations before `next start`.
 - Render Free sleeps after 15 minutes without inbound traffic. In-memory MCP
   sessions disappear when the instance sleeps or restarts, so agents must be

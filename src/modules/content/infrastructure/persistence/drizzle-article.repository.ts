@@ -1,4 +1,4 @@
-import { and, asc, eq } from "drizzle-orm";
+import { and, asc, desc, eq } from "drizzle-orm";
 
 import type { DatabaseExecutor } from "@/infrastructure/database/client";
 import { articles } from "@/infrastructure/database/schema";
@@ -66,6 +66,16 @@ export class DrizzleArticleRepository implements ArticleRepository {
     return row ? ArticlePersistenceMapper.toDomain(row) : null;
   }
 
+  async findByPublicId(articleId: ArticleId): Promise<Article | null> {
+    const [row] = await this.db
+      .select()
+      .from(articles)
+      .where(eq(articles.id, articleId))
+      .limit(1);
+
+    return row ? ArticlePersistenceMapper.toDomain(row) : null;
+  }
+
   async findBySlug(
     tenantId: TenantId,
     slug: ArticleSlug,
@@ -87,6 +97,16 @@ export class DrizzleArticleRepository implements ArticleRepository {
       .from(articles)
       .where(eq(articles.tenantId, tenantId))
       .orderBy(asc(articles.createdAt));
+
+    return rows.map(ArticlePersistenceMapper.toDomain);
+  }
+
+  async listPublished(): Promise<Article[]> {
+    const rows = await this.db
+      .select()
+      .from(articles)
+      .where(eq(articles.status, "published"))
+      .orderBy(desc(articles.updatedAt));
 
     return rows.map(ArticlePersistenceMapper.toDomain);
   }

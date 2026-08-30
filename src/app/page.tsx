@@ -34,7 +34,7 @@ function StoryLink({ article, index }: { article: ArticleDto; index: number }) {
       <div>
         <p className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.17em] text-[var(--ink-muted)]">{date}</p>
         <h3 className="font-serif text-2xl leading-tight tracking-[-0.03em] sm:text-3xl">
-          <Link href={`/articles/${article.slug}`} className="after:absolute after:inset-0">{article.title}</Link>
+          <Link href={`/articles/${article.id}/${article.slug}`} className="after:absolute after:inset-0">{article.title}</Link>
         </h3>
         <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">{excerpt(article.markdown)}</p>
       </div>
@@ -82,7 +82,7 @@ export default async function Home() {
                 </div>
                 <p className="mt-6 font-mono text-xs uppercase tracking-[0.18em] text-[var(--signal)]">Featured story</p>
                 <h3 className="mt-4 max-w-4xl font-serif text-4xl leading-[0.98] tracking-[-0.045em] sm:text-6xl">
-                  <Link href={`/articles/${featured.slug}`} className="after:absolute after:inset-0">{featured.title}</Link>
+                  <Link href={`/articles/${featured.id}/${featured.slug}`} className="after:absolute after:inset-0">{featured.title}</Link>
                 </h3>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--ink-muted)]">{excerpt(featured.markdown)}</p>
               </article>

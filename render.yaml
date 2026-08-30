@@ -16,8 +16,6 @@ services:
     envVars:
       - key: DATABASE_URL
         sync: false
-      - key: CMS_TENANT_ID
-        value: 10000000-0000-4000-8000-000000000001
       - key: CMS_MCP_SESSION_IDLE_TIMEOUT_MS
         value: 1800000
       - key: CMS_MCP_MAX_SESSIONS
