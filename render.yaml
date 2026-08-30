@@ -24,3 +24,5 @@ services:
         value: 100
       - key: CMS_MCP_ALLOWED_ORIGINS
         value: "*"
+      - key: CMS_ADMIN_ALLOWED_ORIGINS
+        value: https://agent-native-cms.onrender.com

@@ -24,7 +24,24 @@ export async function requireAdminSession() {
 
 export function assertSameOrigin(request: Request): boolean {
   const origin = request.headers.get("origin");
-  return origin === null || origin === new URL(request.url).origin;
+  if (origin === null) return true;
+
+  const configuredOrigins = process.env.CMS_ADMIN_ALLOWED_ORIGINS?.trim();
+  if (configuredOrigins) {
+    return configuredOrigins
+      .split(",")
+      .map((candidate) => candidate.trim())
+      .filter(Boolean)
+      .some((candidate) => {
+        try {
+          return new URL(candidate).origin === origin;
+        } catch {
+          return false;
+        }
+      });
+  }
+
+  return origin === new URL(request.url).origin;
 }
 
 export function adminErrorResponse(error: unknown): Response {

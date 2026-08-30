@@ -95,6 +95,10 @@ Health: GET /
 ```
 
 Render injects `PORT`; `next start` reads it automatically.
+`CMS_ADMIN_ALLOWED_ORIGINS` contains the exact public admin origin so the
+same-origin guard remains effective when Render forwards requests to Next.js
+through its internal reverse proxy. Add a future custom domain to the
+comma-separated allowlist before using the admin UI on that domain.
 
 ## 4. Complete hosted setup
 
