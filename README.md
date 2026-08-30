@@ -187,6 +187,11 @@ artifacts and per-capability audit events would let operators safely accept
 presentation code from less-trusted tenants without giving that code access to
 the CMS page or kernel runtime.
 
+The broader proposal—language-neutral presentation manifests, compiler/runtime
+providers, typed policy pipelines, reversible lifecycle effects, and durable
+publication events—is documented in
+[Capability-oriented presentation runtime](docs/future/capability-oriented-presentation-runtime.md).
+
 ## Contributing
 
 Issues and pull requests are welcome. Before opening a pull request:
