@@ -100,6 +100,11 @@ same-origin guard remains effective when Render forwards requests to Next.js
 through its internal reverse proxy. Add a future custom domain to the
 comma-separated allowlist before using the admin UI on that domain.
 
+`GET /api/health` is the public uptime endpoint. It performs one lightweight
+PostgreSQL query and returns only kernel/database readiness, never credentials,
+connection details, tenant data, or runtime session counts. External uptime
+monitors should call this endpoint instead of authenticated admin or MCP routes.
+
 ## 4. Complete hosted setup
 
 After the first deploy succeeds:
@@ -119,6 +124,7 @@ Check the public and protected surfaces:
 
 ```powershell
 curl.exe -I https://YOUR_SERVICE.onrender.com/
+curl.exe -i https://YOUR_SERVICE.onrender.com/api/health
 curl.exe -i https://YOUR_SERVICE.onrender.com/api/mcp/health
 curl.exe -i https://YOUR_SERVICE.onrender.com/api/admin/audit
 ```

@@ -2,6 +2,7 @@ import { config } from "dotenv";
 import { eq } from "drizzle-orm";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 
+import { GET as getHealth } from "@/app/api/health/route";
 import { GET as getArtifact } from "@/app/api/articles/[slug]/presentation/route";
 import { parseEnvironment } from "@/infrastructure/config/environment";
 import { createDatabase } from "@/infrastructure/database/client";
@@ -44,6 +45,17 @@ beforeEach(async () => {
 afterAll(async () => { await database.close(); });
 
 describe("public delivery", () => {
+  it("reports public kernel and database readiness without exposing details", async () => {
+    const response = await getHealth();
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("cache-control")).toBe("no-store");
+    expect(await response.json()).toEqual({
+      status: "ok",
+      database: "reachable",
+    });
+  });
+
   it("lists only published articles for the configured tenant", async () => {
     const result = await listPublicArticles();
     expect(result.map((article) => article.slug)).toEqual(["published-m6-story"]);

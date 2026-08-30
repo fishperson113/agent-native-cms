@@ -17,6 +17,7 @@ Next.js CMS kernel · http://localhost:3000
 ├─ /articles/[slug]          dynamically loaded article presentation
 ├─ /admin                    admin-only operator UI
 ├─ /api/mcp                  stateful Streamable HTTP MCP server
+├─ /api/health               public kernel and PostgreSQL readiness
 ├─ /api/admin/*              admin REST control plane
 └─ /api/admin/audit/stream   resumable audit SSE stream
 
