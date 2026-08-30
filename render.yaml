@@ -13,7 +13,6 @@ services:
     startCommand: pnpm db:migrate && pnpm start
     healthCheckPath: /
     autoDeployTrigger: checksPass
-    maxShutdownDelaySeconds: 30
     envVars:
       - key: DATABASE_URL
         sync: false
