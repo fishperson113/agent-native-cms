@@ -1,0 +1,1 @@
+ALTER TABLE "mcp_credentials" ADD COLUMN "plaintext_key" text;

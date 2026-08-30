@@ -1,0 +1,62 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1787836019457,
+      "tag": "0000_glorious_veda",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787839381590,
+      "tag": "0001_damp_exodus",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1787841866836,
+      "tag": "0002_friendly_jamie_braddock",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1787915457379,
+      "tag": "0003_chunky_shooting_star",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787915698079,
+      "tag": "0004_pale_salo",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1788005964744,
+      "tag": "0005_classy_black_widow",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1788013783110,
+      "tag": "0006_open_mandarin",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1788015963686,
+      "tag": "0007_spotty_bullseye",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f2efe7;
+  --paper-raised: #f8f6f0;
+  --ink: #181815;
+  --ink-muted: #67665f;
+  --line: #cbc7bb;
+  --signal: #c84a2f;
+  --signal-ink: #f8f1e7;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
 }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-geist-sans), sans-serif; }
+::selection { background: var(--signal); color: var(--signal-ink); }
+a, button { outline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--signal); }
+.editorial-rule { border-color: var(--line); }
+
+.article-copy {
+  color: var(--ink);
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.08rem, 1.5vw, 1.25rem);
+  line-height: 1.82;
+}
+.article-copy h2, .article-copy h3 {
+  font-family: var(--font-geist-sans), sans-serif;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin: 2.75em 0 0.7em;
+}
+.article-copy h2 { font-size: clamp(1.8rem, 4vw, 3rem); }
+.article-copy h3 { font-size: clamp(1.35rem, 2.5vw, 2rem); }
+.article-copy p, .article-copy ul { margin: 0 0 1.5em; }
+.article-copy ul { padding-left: 1.2em; }
+.article-copy a {
+  color: inherit;
+  text-decoration-color: var(--signal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.reader-skeleton { animation: skeleton-pulse 1.5s ease-in-out infinite alternate; }
+@keyframes skeleton-pulse { from { opacity: 0.35; } to { opacity: 0.72; } }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #171714;
+    --paper-raised: #20201c;
+    --ink: #eeeae0;
+    --ink-muted: #aaa79f;
+    --line: #44423b;
+    --signal: #e87856;
+    --signal-ink: #171714;
   }
+  img { filter: brightness(0.82) contrast(1.04); }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reader-skeleton { animation: none; }
 }

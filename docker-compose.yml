@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: agent-native-cms-postgres
+    environment:
+      POSTGRES_DB: agent_native_cms
+      POSTGRES_USER: agent_native_cms
+      POSTGRES_PASSWORD: agent_native_cms
+    ports:
+      - "15432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agent_native_cms -d agent_native_cms"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+    volumes:
+      - agent_native_cms_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  agent_native_cms_postgres_data:

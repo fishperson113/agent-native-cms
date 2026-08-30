@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://render.com/schema/render.yaml.json
+
+services:
+  - type: web
+    name: agent-native-cms
+    runtime: node
+    plan: free
+    region: singapore
+    numInstances: 1
+    buildCommand: pnpm install --frozen-lockfile && pnpm build
+    # Render pre-deploy commands require a paid web service. Drizzle migrations
+    # are idempotent, so the free service applies them before each process start.
+    startCommand: pnpm db:migrate && pnpm start
+    healthCheckPath: /
+    autoDeployTrigger: checksPass
+    maxShutdownDelaySeconds: 30
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: CMS_TENANT_ID
+        value: 10000000-0000-4000-8000-000000000001
+      - key: CMS_MCP_SESSION_IDLE_TIMEOUT_MS
+        value: 1800000
+      - key: CMS_MCP_MAX_SESSIONS
+        value: 100
+      - key: CMS_MCP_ALLOWED_ORIGINS
+        value: "*"
