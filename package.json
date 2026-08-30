@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src tests scripts next.config.ts postcss.config.mjs eslint.config.mjs drizzle.config.ts vitest.config.ts vitest.integration.config.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "check:architecture": "node scripts/check-architecture.mjs",
     "test": "vitest run",
     "test:unit": "vitest run",
