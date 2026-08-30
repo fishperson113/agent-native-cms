@@ -22,6 +22,9 @@ and its [architecture documentation](https://github.com/deepseek-ai/deepseek-har
 It intentionally adapts those ideas rather than adopting its "everything is a
 plugin" architecture wholesale.
 
+See [Future architecture diagrams](architecture-diagrams.md) for Mermaid
+component, sequence, and state diagrams covering the concepts in this proposal.
+
 ## Design position
 
 The target philosophy is:
